@@ -1,0 +1,30 @@
+data:
+  input_path: /kaggle/input/byu-locating-bacterial-flagellar-motors-2025
+  data_path: data
+
+model:
+  encoder: convnext_tiny.in12k_ft_in1k
+
+kfold:
+  k: 5
+  folds: [0,1,2,3,4]
+
+train:
+  amp: True
+  weight_decay: 1e-4
+
+validate:
+  frequency: 1
+
+loader:
+  batch_size: 8
+  num_workers: 2
+
+scheduler:
+  - linear:
+      lr_start: 1e-8
+      lr_end: 4e-4
+      epoch_end: 1
+  - cosine:
+      lr_end: 1e-6
+      epoch_end: 10

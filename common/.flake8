@@ -1,0 +1,4 @@
+[flake8]
+extend-ignore = E124,E129,E402,W504
+max-line-length = 120
+exclude = temp.py
